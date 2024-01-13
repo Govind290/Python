@@ -1,13 +1,8 @@
 #!/usr/bin/python
-
 # Logistic Regression from scratch
-
 # In[62]:
-
 # In[63]:
-
 # importing all the required libraries
-
 """
 Implementing logistic regression for classification problem
 Helpful resources:
@@ -17,16 +12,10 @@ https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import datasets
-
 # get_ipython().run_line_magic('matplotlib', 'inline')
-
-
 # In[67]:
-
 # sigmoid function or logistic function is used as a hypothesis function in
 # classification problems
-
-
 def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     """
     Also known as Logistic Function.
@@ -60,7 +49,6 @@ def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     array([0.68997448])
     """
     return 1 / (1 + np.exp(-z))
-
 
 def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     """
@@ -101,11 +89,9 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     """
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
-
 def log_likelihood(x, y, weights):
     scores = np.dot(x, weights)
     return np.sum(y * scores - np.log(1 + np.exp(scores)))
-
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
 def logistic_reg(alpha, x, y, max_iterations=70000):
@@ -123,26 +109,24 @@ def logistic_reg(alpha, x, y, max_iterations=70000):
             print(f"loss: {j} \t")  # printing the loss after every 100 iterations
     return theta
 
-
-# In[68]:
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
-
     iris = datasets.load_iris()
     x = iris.data[:, :2]
     y = (iris.target != 0) * 1
-
     alpha = 0.1
     theta = logistic_reg(alpha, x, y, max_iterations=70000)
-    print("theta: ", theta)  # printing the theta i.e our weights vector
+    print("theta: ", theta) 
+    
+    # printing the theta i.e our weights vector
 
     def predict_prob(x):
         return sigmoid_function(
             np.dot(x, theta)
-        )  # predicting the value of probability from the logistic regression algorithm
+        ) 
+        
+    # predicting the value of probability from the logistic regression algorithm
 
     plt.figure(figsize=(10, 6))
     plt.scatter(x[y == 0][:, 0], x[y == 0][:, 1], color="b", label="0")
